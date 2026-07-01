@@ -71,10 +71,10 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center font-display text-sm text-neutral-400">
           <Blaze />
-          CodeHunts PK — free coding lessons, no sign-up required.
+          CodeHunts — free coding lessons, no sign-up required.
         </div>
         <p className="font-mono text-xs text-neutral-500">
-          &copy; {new Date().getFullYear()} learn.codehuntspk.com
+          &copy; {new Date().getFullYear()} <a href="https://codehuntspk.com" target='_blank'>Code HUNT'S</a>
         </p>
       </div>
     </footer>
