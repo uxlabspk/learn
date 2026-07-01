@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import type { ReactNode } from 'react'
+import { useState } from 'react'
 
 function Blaze() {
   // The signature mark: a trail blaze, the painted tick hikers follow.
@@ -13,6 +14,8 @@ function Blaze() {
 }
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-display text-sm tracking-wide uppercase transition-colors ${
       isActive ? 'text-indigoAccent' : 'text-neutral-300 hover:text-indigoAccent'
@@ -20,15 +23,43 @@ function Header() {
 
   return (
     <header className="border-b border-white/[0.08] bg-midnight/95 backdrop-blur sticky top-0 z-20">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center font-display font-700 text-lg text-white">
           <Blaze />
           CodeHunts <span className="text-indigoAccent ml-1.5">Learn</span>
         </Link>
-        <nav className="flex items-center gap-6">
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden sm:flex items-center gap-6">
           <NavLink to="/" end className={linkClass}>Home</NavLink>
           <NavLink to="/courses" className={linkClass}>Courses</NavLink>
         </nav>
+        
+        {/* Mobile Hamburger Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="sm:hidden p-2 rounded-sm hover:bg-neutral-900 transition-colors"
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+        >
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="sm:hidden absolute top-full left-0 right-0 bg-midnight/95 border-b border-white/[0.08] z-10">
+            <nav className="flex flex-col items-start px-4 py-3 gap-3">
+              <NavLink to="/" end className={linkClass} onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+              <NavLink to="/courses" className={linkClass} onClick={() => setIsMenuOpen(false)}>Courses</NavLink>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )
@@ -36,8 +67,8 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/[0.08] mt-24">
-      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <footer className="border-t border-white/[0.08] mt-16 sm:mt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center font-display text-sm text-neutral-400">
           <Blaze />
           CodeHunts PK — free coding lessons, no sign-up required.
