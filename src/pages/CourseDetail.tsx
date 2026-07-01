@@ -1,6 +1,8 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/github-dark.css';
 import { getLesson, lessonsByTrack } from '../lib/content'
 
 export default function CourseDetail() {
@@ -40,7 +42,7 @@ export default function CourseDetail() {
         )}
 
         <div className="article-body max-w-prose">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{lesson.body}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{lesson.body}</ReactMarkdown>
         </div>
 
         <div className="flex items-center justify-between border-t border-white/[0.08] mt-16 pt-8">
