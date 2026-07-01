@@ -3,7 +3,7 @@ import { tracks, lessonsByTrack } from '../lib/content'
 
 export default function Courses() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
+    <div className="max-w-7xl mx-auto px-6 py-16">
       <p className="font-mono text-xs tracking-widest uppercase text-indigoAccent mb-3">All lessons</p>
       <h1 className="font-display font-700 text-3xl text-white mb-12">Courses</h1>
 

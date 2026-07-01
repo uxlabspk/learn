@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="bg-grid bg-grid border-b border-white/[0.08]">
-        <div className="max-w-5xl mx-auto px-6 pt-20 pb-16">
+        <div className="max-w-7xl mx-auto px-6 pt-20 pb-16">
           <p className="font-mono text-xs tracking-widest uppercase text-indigoAccent mb-4">
             Free &middot; No sign-up &middot; Read at your own pace
           </p>
@@ -28,7 +28,7 @@ export default function Home() {
       </section>
 
       {/* Trail map of tracks */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
+      <section className="max-w-7xl mx-auto px-6 py-16">
         <h2 className="font-display font-600 text-xl text-white mb-8">Pick a trail</h2>
         <div className="space-y-10">
           {tracks.map((track, i) => {

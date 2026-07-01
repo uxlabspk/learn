@@ -20,7 +20,7 @@ function Header() {
 
   return (
     <header className="border-b border-white/[0.08] bg-midnight/95 backdrop-blur sticky top-0 z-20">
-      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center font-display font-700 text-lg text-white">
           <Blaze />
           CodeHunts <span className="text-indigoAccent ml-1.5">Learn</span>
@@ -37,7 +37,7 @@ function Header() {
 function Footer() {
   return (
     <footer className="border-t border-white/[0.08] mt-24">
-      <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center font-display text-sm text-neutral-400">
           <Blaze />
           CodeHunts PK — free coding lessons, no sign-up required.

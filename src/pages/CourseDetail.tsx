@@ -15,7 +15,7 @@ export default function CourseDetail() {
   const next = trackLessons[idx + 1]
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-16 grid lg:grid-cols-[1fr_220px] gap-12">
+    <div className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-[1fr_220px] gap-12">
       <article>
         <Link to="/courses" className="font-mono text-xs uppercase tracking-widest text-indigoAccent hover:underline">
           &larr; All courses
