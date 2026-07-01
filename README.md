@@ -1,4 +1,4 @@
-# CodeHunts Learn
+# CodeHunts Learn Platform
 
 Free coding course/article site for `learn.codehuntspk.com`, built with React + TypeScript + Vite. Fully static — no server-side code, no database, no login required.
 
@@ -50,33 +50,6 @@ npm run build
 
 This outputs a fully static site into the `dist/` folder — that folder is everything you upload to Hostinger.
 
----
-
-## Deploying to Hostinger (learn.codehuntspk.com)
-
-**1. Create the subdomain** (skip if already done)
-In hPanel: **Domains → Subdomains** → create `learn` on `codehuntspk.com`. Hostinger will create a folder, usually `public_html/learn` (sometimes shown as `learn.codehuntspk.com`).
-
-**2. Build the project**
-```bash
-npm run build
-```
-
-**3. Upload the contents of `dist/`**
-Using hPanel's **File Manager** (or an FTP client like FileZilla with your Hostinger FTP credentials):
-- Go into the subdomain's folder (e.g. `public_html/learn`)
-- Upload **everything inside `dist/`** (not the `dist` folder itself) — so `index.html`, the `assets/` folder, `.htaccess`, and `pdfs/` should sit directly in that folder.
-
-**4. Confirm `.htaccess` made it**
-File Manager sometimes hides dotfiles. Turn on "Show hidden files" in File Manager settings and confirm `.htaccess` is present in the subdomain folder — without it, visiting a lesson URL directly (or refreshing on one) will 404.
-
-**5. Visit `learn.codehuntspk.com`**
-It can take a few minutes for DNS/SSL to fully propagate the first time a subdomain is created. Hostinger issues a free SSL certificate automatically — if the site loads without `https`, check **hPanel → SSL** and issue/attach one to the subdomain.
-
-### Updating content later
-
-Whenever you add or edit a lesson: edit the `.md` file → `npm run build` → re-upload the new contents of `dist/` (you can overwrite the old files). Nothing on the server needs to change.
-
 ## Project structure
 
 ```
@@ -92,5 +65,5 @@ public/
 
 ## Notes
 
-- No backend, no database, no user accounts — by design, per the current scope. If you later want logins/progress-tracking, that would need adding a PHP+MySQL API (Hostinger shared hosting supports both) or a hosted service like Supabase.
+- No backend, no database, no user accounts — by design, per the current scope. If you later want logins/progress-tracking, that would need adding a PHP+MySQL API 
 - Fonts are loaded from Google Fonts via `<link>` tags in `index.html`. If you'd rather not depend on Google Fonts, they can be self-hosted instead.
