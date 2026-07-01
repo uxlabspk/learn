@@ -1,0 +1,26 @@
+# Required so that routes like /courses/js-variables don't 404 on
+# refresh or direct visit -- Apache serves index.html and React Router
+# takes over from there.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Let real files and folders (js, css, images, pdfs) be served normally
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else goes through index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Sensible caching for hashed build assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 month"
+</IfModule>
