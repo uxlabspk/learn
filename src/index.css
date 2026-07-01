@@ -7,19 +7,19 @@ html {
 }
 
 body {
-  background-color: #EEF0E8;
-  color: #172019;
-  font-family: 'Source Serif 4', serif;
+  background-color: #050505;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
 }
 
 ::selection {
-  background-color: #BE5B2E;
-  color: #EEF0E8;
+  background-color: #818cf8;
+  color: #050505;
 }
 
 /* focus ring visible everywhere, matches the theme */
 :focus-visible {
-  outline: 2px solid #BE5B2E;
+  outline: 2px solid #818cf8;
   outline-offset: 2px;
 }
 
@@ -33,11 +33,15 @@ body {
 }
 
 /* Article body typography, applied to rendered markdown */
+.article-body {
+  font-family: 'Inter', sans-serif;
+}
+
 .article-body h2 {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 1.4rem;
-  color: #172019;
+  color: #ffffff;
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
 }
@@ -46,7 +50,7 @@ body {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 1.15rem;
-  color: #172019;
+  color: #ffffff;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
 }
@@ -54,13 +58,13 @@ body {
 .article-body p {
   margin-bottom: 1.1rem;
   line-height: 1.75;
-  color: #3B453D;
+  color: #d4d4d8;
 }
 
 .article-body ul,
 .article-body ol {
   margin: 1rem 0 1.25rem 1.5rem;
-  color: #3B453D;
+  color: #d4d4d8;
   line-height: 1.7;
 }
 
@@ -69,28 +73,29 @@ body {
 }
 
 .article-body a {
-  color: #9A491F;
+  color: #818cf8;
   text-decoration: underline;
-  text-decoration-color: rgba(190,91,46,0.4);
+  text-decoration-color: rgba(129, 140, 248, 0.4);
   text-underline-offset: 3px;
 }
 
 .article-body code {
   font-family: 'JetBrains Mono', monospace;
-  background: #E4E7DC;
+  background: #18181b;
   padding: 0.15em 0.4em;
   border-radius: 3px;
   font-size: 0.88em;
-  color: #9A491F;
+  color: #e4e4e7;
 }
 
 .article-body pre {
-  background: #172019;
-  color: #EEF0E8;
+  background: #18181b;
+  color: #e4e4e7;
   padding: 1.1rem 1.25rem;
   border-radius: 6px;
   overflow-x: auto;
   margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .article-body pre code {
@@ -100,9 +105,9 @@ body {
 }
 
 .article-body blockquote {
-  border-left: 3px solid #BE5B2E;
+  border-left: 3px solid #818cf8;
   padding-left: 1rem;
-  color: #4B6455;
+  color: #a1a1aa;
   font-style: italic;
   margin: 1.25rem 0;
 }

@@ -4,14 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#EEF0E8',
-        paperDim: '#E4E7DC',
-        ink: '#172019',
-        inkSoft: '#3B453D',
-        rust: '#BE5B2E',
-        rustDark: '#9A491F',
-        moss: '#4B6455',
-        sand: '#D9C79E',
+        midnight: '#050505',
+        indigoAccent: '#818cf8',
+        indigoGlow: 'rgba(129, 140, 248, 0.1)',
+        neutralSoft: '#404040',
+        neutralDim: '#27272a',
       },
       fontFamily: {
         display: ['"Space Grotesk"', 'sans-serif'],
@@ -22,10 +19,10 @@ export default {
         prose: '68ch',
       },
       backgroundImage: {
-        grid: 'linear-gradient(rgba(23,32,25,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(23,32,25,0.045) 1px, transparent 1px)',
+        grid: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
       },
       backgroundSize: {
-        grid: '28px 28px',
+        grid: '40px 40px',
       },
     },
   },
