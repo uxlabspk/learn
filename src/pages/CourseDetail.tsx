@@ -6,34 +6,26 @@ import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/github-dark.css'
 import { getLesson, lessonsByTrack } from '../lib/content'
 import { useAuth } from '../context/AuthContext'
-import {
-  getCompletedLessons,
-  markLessonComplete,
-  unmarkLessonComplete,
-  recordActivity,
-} from '../services/progress'
+import { markLessonComplete, unmarkLessonComplete, recordActivity } from '../services/progress'
 
 export default function CourseDetail() {
   const { slug } = useParams<{ slug: string }>()
   const lesson = slug ? getLesson(slug) : undefined
-  const { user } = useAuth()
+  const { user, progress, patchProgress } = useAuth()
 
-  const [completed, setCompleted] = useState(false)
   const [saving, setSaving] = useState(false)
 
-  // Record activity and check completion state whenever the lesson or user changes
+  // Record today as active whenever a logged-in user opens a lesson.
+  // Only re-runs when the user identity or lesson changes — not on every render.
   useEffect(() => {
     if (!user || !lesson) return
-
-    // Count this as an active day just by opening a lesson
     recordActivity().catch(() => {})
-
-    getCompletedLessons()
-      .then((slugs) => setCompleted(slugs.includes(lesson.slug)))
-      .catch(() => {})
-  }, [user, lesson?.slug])
+  }, [user?.id, lesson?.slug])
 
   if (!lesson) return <Navigate to="/courses" replace />
+
+  // Read completion state directly from the shared cache — no extra fetch needed
+  const completed = progress.completedSlugs.has(lesson.slug)
 
   const trackLessons = lessonsByTrack(lesson.track)
   const idx = trackLessons.findIndex((l) => l.slug === lesson.slug)
@@ -46,13 +38,13 @@ export default function CourseDetail() {
     try {
       if (completed) {
         await unmarkLessonComplete(lesson!.slug)
-        setCompleted(false)
+        patchProgress(lesson!.slug, false)   // update cache optimistically
       } else {
         await markLessonComplete(lesson!.slug)
-        setCompleted(true)
+        patchProgress(lesson!.slug, true)    // update cache optimistically
       }
     } catch {
-      // silently ignore — user can retry
+      // silently ignore — cache stays consistent with what Supabase confirmed
     } finally {
       setSaving(false)
     }
@@ -85,11 +77,10 @@ export default function CourseDetail() {
               </a>
             )}
 
-            {/* Mark as complete — only shown to logged-in users */}
             {user && (
               <button
                 onClick={toggleComplete}
-                disabled={saving}
+                disabled={saving || !progress.loaded}
                 className={`inline-flex items-center gap-2 font-display text-xs uppercase tracking-wide px-3 sm:px-4 py-2 sm:py-2.5 rounded-sm border transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
                   completed
                     ? 'bg-green-500/10 border-green-500/30 text-green-400 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400'
