@@ -12,6 +12,7 @@ import ResetPassword from './pages/auth/ResetPassword'
 import VerifyEmail from './pages/auth/VerifyEmail'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/dashboard/Profile'
+import Settings from './pages/dashboard/Settings'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -38,6 +39,7 @@ export default function App() {
         {/* Protected */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
