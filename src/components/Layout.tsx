@@ -158,7 +158,6 @@ function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden sm:flex items-center gap-6">
-          <NavLink to="/" end className={linkClass}>Home</NavLink>
           <NavLink to="/courses" className={linkClass}>Courses</NavLink>
 
           {!loading && (
@@ -203,7 +202,6 @@ function Header() {
         {isMenuOpen && (
           <div className="sm:hidden absolute top-full left-0 right-0 bg-midnight/95 border-b border-white/[0.08] z-10">
             <nav className="flex flex-col items-start px-4 py-3 gap-3">
-              <NavLink to="/" end className={linkClass} onClick={() => setIsMenuOpen(false)}>Home</NavLink>
               <NavLink to="/courses" className={linkClass} onClick={() => setIsMenuOpen(false)}>Courses</NavLink>
 
               {!loading && (
