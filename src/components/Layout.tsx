@@ -139,8 +139,7 @@ function Header() {
   const navigate = useNavigate()
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `font-display text-sm tracking-wide uppercase transition-colors ${
-      isActive ? 'text-indigoAccent' : 'text-neutral-300 hover:text-indigoAccent'
+    `font-display text-sm tracking-wide uppercase transition-colors ${isActive ? 'text-indigoAccent' : 'text-neutral-300 hover:text-indigoAccent'
     }`
 
   async function handleMobileSignOut() {
@@ -270,7 +269,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center font-display text-sm text-neutral-400">
           <Blaze />
-          CodeHunts — free coding lessons, no sign-up required.
+          CodeHunts — free coding lessons.
         </div>
         <p className="font-mono text-xs text-neutral-500">
           &copy; {new Date().getFullYear()} <a href="https://codehuntspk.com" target='_blank'>Code HUNT'S</a>
