@@ -1,6 +1,7 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
 
 function Blaze() {
   // The signature mark: a trail blaze, the painted tick hikers follow.
@@ -15,11 +16,19 @@ function Blaze() {
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
+  const { user, loading, signOut } = useAuth()
+  const navigate = useNavigate()
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-display text-sm tracking-wide uppercase transition-colors ${
       isActive ? 'text-indigoAccent' : 'text-neutral-300 hover:text-indigoAccent'
     }`
+
+  async function handleSignOut() {
+    await signOut()
+    navigate('/')
+    setIsMenuOpen(false)
+  }
 
   return (
     <header className="border-b border-white/[0.08] bg-midnight/95 backdrop-blur sticky top-0 z-20">
@@ -28,13 +37,48 @@ function Header() {
           <Blaze />
           CodeHunts <span className="text-indigoAccent ml-1.5">Learn</span>
         </Link>
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden sm:flex items-center gap-6">
           <NavLink to="/" end className={linkClass}>Home</NavLink>
           <NavLink to="/courses" className={linkClass}>Courses</NavLink>
+
+          {!loading && (
+            user ? (
+              <div className="flex items-center gap-3">
+                {/* User avatar / email initial */}
+                <span
+                  className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-indigoAccent/20 border border-indigoAccent/30 font-mono text-xs text-indigoAccent uppercase"
+                  title={user.email}
+                >
+                  {user.email?.[0] ?? '?'}
+                </span>
+                <button
+                  onClick={handleSignOut}
+                  className="font-display text-sm tracking-wide uppercase text-neutral-400 hover:text-indigoAccent transition-colors"
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <NavLink
+                  to="/login"
+                  className="font-display text-sm tracking-wide uppercase text-neutral-300 hover:text-indigoAccent transition-colors"
+                >
+                  Sign in
+                </NavLink>
+                <Link
+                  to="/signup"
+                  className="font-display text-sm uppercase tracking-wide bg-indigoAccent text-midnight px-4 py-1.5 rounded-sm hover:bg-indigo-400 transition-colors"
+                >
+                  Sign up
+                </Link>
+              </div>
+            )
+          )}
         </nav>
-        
+
         {/* Mobile Hamburger Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -50,13 +94,38 @@ function Header() {
             )}
           </svg>
         </button>
-        
+
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="sm:hidden absolute top-full left-0 right-0 bg-midnight/95 border-b border-white/[0.08] z-10">
             <nav className="flex flex-col items-start px-4 py-3 gap-3">
               <NavLink to="/" end className={linkClass} onClick={() => setIsMenuOpen(false)}>Home</NavLink>
               <NavLink to="/courses" className={linkClass} onClick={() => setIsMenuOpen(false)}>Courses</NavLink>
+
+              {!loading && (
+                user ? (
+                  <>
+                    <span className="font-mono text-xs text-neutral-500">{user.email}</span>
+                    <button
+                      onClick={handleSignOut}
+                      className="font-display text-sm tracking-wide uppercase text-neutral-400 hover:text-indigoAccent transition-colors"
+                    >
+                      Sign out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <NavLink to="/login" className={linkClass} onClick={() => setIsMenuOpen(false)}>Sign in</NavLink>
+                    <Link
+                      to="/signup"
+                      className="font-display text-sm uppercase tracking-wide bg-indigoAccent text-midnight px-4 py-1.5 rounded-sm hover:bg-indigo-400 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Sign up
+                    </Link>
+                  </>
+                )
+              )}
             </nav>
           </div>
         )}

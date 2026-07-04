@@ -5,6 +5,11 @@ import Home from './pages/Home'
 import Courses from './pages/Courses'
 import CourseDetail from './pages/CourseDetail'
 import NotFound from './pages/NotFound'
+import Login from './pages/auth/Login'
+import Signup from './pages/auth/Signup'
+import ForgotPassword from './pages/auth/ForgotPassword'
+import ResetPassword from './pages/auth/ResetPassword'
+import VerifyEmail from './pages/auth/VerifyEmail'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -16,9 +21,18 @@ export default function App() {
   return (
     <Layout>
       <Routes>
+        {/* Public */}
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:slug" element={<CourseDetail />} />
+
+        {/* Auth */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
