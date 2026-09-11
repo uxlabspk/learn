@@ -8,7 +8,7 @@ export default function Home() {
       <section className="bg-grid bg-grid border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 pb-12 sm:pb-16">
           <p className="font-mono text-xs tracking-widest uppercase text-indigoAccent mb-4">
-            Free &middot; No sign-up &middot; Read at your own pace
+            Free &middot; Read at your own pace
           </p>
           <h1 className="font-display font-700 text-3xl sm:text-4xl lg:text-5xl text-white leading-tight max-w-2xl">
             Learn to code, one waymarked lesson at a time.
